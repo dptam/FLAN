@@ -19,9 +19,13 @@ vocab = t5.data.get_default_vocabulary()
 
 
 def prepare_task(split, shots, opt, task):
-    dataset = seqio.get_mixture_or_task(f"palmflan_{task}_{shots}_{opt}").get_dataset(
+    # dataset = seqio.get_mixture_or_task(f"palmflan_{task}_{shots}_{opt}").get_dataset(
+    #     split=split, num_epochs=1, sequence_length={"inputs": 4096, "targets": 4096}
+    # )
+    dataset = seqio.get_mixture_or_task(f"bool_q_template_0to10_zero_shot").get_dataset(
         split=split, num_epochs=1, sequence_length={"inputs": 4096, "targets": 4096}
     )
+
     print("starting", task, shots, opt, split)
     with open(f"./data/{task}_{shots}_{opt}_{split}.jsonl", "w") as f:
         for ex in dataset.as_numpy_iterator()[:10]:

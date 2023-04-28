@@ -145,6 +145,7 @@ rte_source_args = {
         'test': 'validation',
     }
 }
+
 TASK_CONFIGS['rte'] = TaskConfig(
     source=seqio.TfdsDataSource(**rte_source_args),
     preprocessors=[

@@ -49,8 +49,8 @@ T_NAME_TO_NUM_CASES = {
     'bool_q': {
         'zero_shot': 500000,
         # 'zero_shot': 9220,
-        'x_shot': 9220,
-        'five_shot': 9220,
+        'x_shot': 500000,
+        'five_shot': 500000,
     },
     'rte': {
         'zero_shot': 2290,

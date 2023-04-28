@@ -70,7 +70,6 @@ def register_zero_shot_task(zero_shot_name: str,
 
   add_template_metadata_fn = functools.partial(prep.add_template_info, template_type=template_type)
   for suffix, output_features in constants.TRAIN_TASK_SUFFIXES_AND_FEATURES:
-    # import ipdb; ipdb.set_trace()
     seqio.TaskRegistry.add(
         zero_shot_name + suffix,
         source=zero_shot_config.source,
@@ -108,9 +107,10 @@ for t_name, config in task_configs.ALL_CANDIDATE_TASK_CONFIGS.items():
   flan_pattern_name = utils.t_name_to_flan_pattern_name(t_name)
   patterns_list = templates.PATTERNS[flan_pattern_name]
 
-  selected_patterns = patterns_list[0:1]
-  zero_shot_task_name = f"{t_name}_template_0_zero_shot"
-  register_zero_shot_task(zero_shot_task_name, config, selected_patterns, "zs_opt")
+  for pattern_idx in range(10):
+    selected_patterns = patterns_list[pattern_idx:1+pattern_idx]
+    zero_shot_task_name = f"{t_name}_template_{pattern_idx}_zero_shot"
+    register_zero_shot_task(zero_shot_task_name, config, selected_patterns, "zs_opt")
 
   selected_patterns = patterns_list
   zero_shot_task_name = f"{t_name}_template_0to10_zero_shot"

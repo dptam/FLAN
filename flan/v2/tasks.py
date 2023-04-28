@@ -70,6 +70,7 @@ def register_zero_shot_task(zero_shot_name: str,
 
   add_template_metadata_fn = functools.partial(prep.add_template_info, template_type=template_type)
   for suffix, output_features in constants.TRAIN_TASK_SUFFIXES_AND_FEATURES:
+    print(zero_shot_config.source)
     seqio.TaskRegistry.add(
         zero_shot_name + suffix,
         source=zero_shot_config.source,

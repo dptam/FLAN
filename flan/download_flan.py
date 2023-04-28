@@ -24,10 +24,7 @@ def prepare_task(split, shots, opt, task):
     )
     print("starting", task, shots, opt, split)
     with open(f"./data/{task}_{shots}_{opt}_{split}.jsonl", "w") as f:
-        for ex in dataset.as_numpy_iterator():
-            import ipdb
-
-            ipdb.set_trace()
+        for ex in dataset.as_numpy_iterator()[:10]:
             f.write(
                 json.dumps(
                     {

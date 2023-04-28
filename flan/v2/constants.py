@@ -47,7 +47,8 @@ TRAIN_TASK_SUFFIXES = [x for x, _ in TRAIN_TASK_SUFFIXES_AND_FEATURES]
 # number-of-cases list is not accurate.
 T_NAME_TO_NUM_CASES = {
     'bool_q': {
-        'zero_shot': 9220,
+        'zero_shot': 500000,
+        # 'zero_shot': 9220,
         'x_shot': 9220,
         'five_shot': 9220,
     },

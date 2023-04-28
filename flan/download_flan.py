@@ -22,7 +22,8 @@ def prepare_task(split, shots, opt, task):
     # dataset = seqio.get_mixture_or_task(f"palmflan_{task}_{shots}_{opt}").get_dataset(
     #     split=split, num_epochs=1, sequence_length={"inputs": 4096, "targets": 4096}
     # )
-    dataset = seqio.get_mixture_or_task(f"bool_q_template_0to10_zero_shot").get_dataset(
+    # list_datasets = ["bool_q", "natural_questions", "record", "trivia_qa", "arc_challenge", "arc_easy", "cnn_dailymail", "gigaword", "xsum", "squad_v1", "squad_v2", "drop", "multirc", "ag_news_subset", "imdb_reviews", "sentiment140", "yelp_polarity_review", "cosmos_qa", "sst2", "openbookqa"]
+    dataset = seqio.get_mixture_or_task(f"bool_q_template_0_zero_shot").get_dataset(
         split=split, num_epochs=1, sequence_length={"inputs": 4096, "targets": 4096}
     )
 

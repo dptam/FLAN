@@ -120,7 +120,7 @@ def register_mixture(mix_prefix: str,
         for template, template_type in templates.items()
     ]
     # pylint: enable=g-complex-comprehension
-    import ipdb; ipdb.set_trace()
+
     if use_all_templates:
       task_template_ids.extend(formatted_templates)
     else:

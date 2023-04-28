@@ -28,12 +28,14 @@ def prepare_task(split, shots, opt, task):
 
     print("starting", task, shots, opt, split)
     with open(f"./data/{task}_{shots}_{opt}_{split}.jsonl", "w") as f:
-        for ex in dataset.as_numpy_iterator()[:10]:
+        for ex in dataset.as_numpy_iterator():
+            input_ids = list(map(lambda x: int(x), ex["inputs"]))
+            target_ids = list(map(lambda x: int(x), ex["targets"]))
             f.write(
                 json.dumps(
                     {
-                        "inputs": vocab.decode(ex["inputs"]),
-                        "targets": vocab.decode(ex["targets"]),
+                        "inputs": vocab.decode(input_ids),
+                        "targets": vocab.decode(target_ids),
                         "task": task,
                     }
                 )

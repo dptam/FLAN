@@ -145,7 +145,7 @@ rte_source_args = {
         'test': 'validation',
     }
 }
-
+'''
 TASK_CONFIGS['rte'] = TaskConfig(
     source=seqio.TfdsDataSource(**rte_source_args),
     preprocessors=[
@@ -156,7 +156,7 @@ TASK_CONFIGS['rte'] = TaskConfig(
     metric_fns=glue_utils.get_super_glue_metric('rte'),
     source_args=rte_source_args,
 )
-
+'''
 # =============================== Wsc ========================================
 NUM_VAL_EXAMPLES_WSC = 50
 WSC_SPLITS_DICT = {
@@ -191,6 +191,7 @@ wsc_source_args = {
     'tfds_name': 'super_glue/wsc.fixed:1.0.2',
     'splits': WSC_SPLITS_DICT
 }
+'''
 TASK_CONFIGS['wsc'] = TaskConfig(
     source=seqio.TfdsDataSource(**wsc_source_args),
     preprocessors=[
@@ -202,7 +203,7 @@ TASK_CONFIGS['wsc'] = TaskConfig(
     metric_fns=[t5_metrics.accuracy],
     source_args=wsc_source_args,
 )
-
+'''
 
 # =============================== WSC273 =======================================
 @seqio.map_over_dataset
@@ -223,7 +224,7 @@ def _process_wsc273(example):
       'answer': tf.boolean_mask(options, one_hot)[0],
   }
 
-
+'''
 TASK_CONFIGS['wsc273'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='wsc273:1.0.0',  # Only the test split is available.
@@ -235,7 +236,7 @@ TASK_CONFIGS['wsc273'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.accuracy],
 )
-
+'''
 
 # =============================== Wic ========================================
 @seqio.map_over_dataset
@@ -260,6 +261,7 @@ wic_source_args = {
         'test': 'validation',
     }
 }
+'''
 TASK_CONFIGS['wic'] = TaskConfig(
     source=seqio.TfdsDataSource(**wic_source_args),
     preprocessors=[
@@ -270,7 +272,7 @@ TASK_CONFIGS['wic'] = TaskConfig(
     metric_fns=glue_utils.get_super_glue_metric('wic'),
     source_args=wic_source_args,
 )
-
+'''
 
 # =============================== Natural Questions ============================
 @seqio.map_over_dataset
@@ -443,7 +445,7 @@ def _process_math_dataset(example):
       'answer': example['answer'],
   }
 
-
+'''
 # There are other math datasets, but it may not be super helpful to add them in.
 TASK_CONFIGS['math_dataset'] = TaskConfig(
     source=seqio.TfdsDataSource(
@@ -460,7 +462,7 @@ TASK_CONFIGS['math_dataset'] = TaskConfig(
     # There is only one correct answer to a math question.
     metric_fns=[t5_metrics.accuracy],
 )
-
+'''
 
 # ==================================== aeslc ===================================
 @seqio.map_over_dataset
@@ -485,7 +487,7 @@ def _filter_aeslc(dataset):
 
   return dataset.filter(my_fn)
 
-
+'''
 TASK_CONFIGS['aeslc'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='aeslc:1.0.0',
@@ -501,7 +503,7 @@ TASK_CONFIGS['aeslc'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.rouge],
 )
-
+'''
 
 # ============================== CNN Dailymail =================================
 @seqio.map_over_dataset
@@ -577,7 +579,7 @@ def _filter_multi_news(dataset):
 
   return dataset.filter(my_fn)
 
-
+'''
 TASK_CONFIGS['multi_news'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='multi_news:1.0.0', splits=SPLITS_DICT),
@@ -588,7 +590,7 @@ TASK_CONFIGS['multi_news'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.rouge],
 )
-
+'''
 
 # ============================== Newsroom ====================================
 @seqio.map_over_dataset
@@ -599,7 +601,7 @@ def _process_newsroom(example):
       'summary': example['summary'],
   }
 
-
+'''
 TASK_CONFIGS['newsroom'] = TaskConfig(
     source=seqio.TfdsDataSource(tfds_name='newsroom:1.0.0', splits=SPLITS_DICT),
     preprocessors=[
@@ -608,7 +610,7 @@ TASK_CONFIGS['newsroom'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.rouge],
 )
-
+'''
 
 # =================== Opinion Abstracts Rotten Tomatoes ========================
 @seqio.map_over_dataset
@@ -627,6 +629,7 @@ def _process_opinion_abstracts_rotten_tomatoes(example):
 
 oart_prep_fn = functools.partial(prep.add_source_info,
     task_name="opinion_abstracts_rotten_tomatoes", task_source="Flan2021")
+'''
 TASK_CONFIGS['opinion_abstracts_rotten_tomatoes'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='opinion_abstracts/rotten_tomatoes:1.0.0',
@@ -642,7 +645,7 @@ TASK_CONFIGS['opinion_abstracts_rotten_tomatoes'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.rouge],
 )
-
+'''
 
 # ======================= Opinion Abstracts idebate ============================
 @seqio.map_over_dataset
@@ -658,6 +661,7 @@ def _process_opinion_abstracts_idebate(example):
 
 oaid_prep_fn = functools.partial(prep.add_source_info,
     task_name="opinion_abstracts_idebate", task_source="Flan2021")
+'''
 TASK_CONFIGS['opinion_abstracts_idebate'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='opinion_abstracts/idebate:1.0.0',
@@ -673,7 +677,7 @@ TASK_CONFIGS['opinion_abstracts_idebate'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.rouge],
 )
-
+'''
 
 # ================================= CoQA =======================================
 @seqio.map_over_dataset
@@ -687,7 +691,7 @@ def _process_coqa(example):
           prep.numbered_items_str(example['answers']['input_text']),
   }
 
-
+'''
 TASK_CONFIGS['coqa'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='coqa:1.0.0',
@@ -703,7 +707,7 @@ TASK_CONFIGS['coqa'] = TaskConfig(
     # Squad, according to the paper: https://arxiv.org/pdf/1808.07042.pdf
     metric_fns=[t5_metrics.squad],
 )
-
+'''
 
 # ================================ samsum ======================================
 @seqio.map_over_dataset
@@ -715,7 +719,7 @@ def _process_samsum(example):
       'dialogue': dialogue,
   }
 
-
+'''
 TASK_CONFIGS['samsum'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='samsum:1.0.0',
@@ -730,7 +734,7 @@ TASK_CONFIGS['samsum'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.rouge],
 )
-
+'''
 
 # ============================== xsum ==========================================
 @seqio.map_over_dataset
@@ -864,7 +868,7 @@ def _process_quac(example):
       'answer': _remove_cannotanswer(example['orig_answer']['text']),
   }
 
-
+'''
 TASK_CONFIGS['quac'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='quac:1.0.0',
@@ -880,7 +884,7 @@ TASK_CONFIGS['quac'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.trivia_qa],
 )
-
+'''
 
 # ================================ multirc =====================================
 @seqio.map_over_dataset
@@ -999,7 +1003,7 @@ def _process_anli(example):
       'glm_answer': tf.boolean_mask(glm_options, one_hot)[0],
   }
 
-
+'''
 for config_name in ['r1', 'r2', 'r3']:
   # `r1` only has 15k examples, so `train[:30000]` throws an error
   t_set = 'train' if config_name == 'r1' else f'train[:{NUM_TRAIN_EXAMPLES}]'
@@ -1019,7 +1023,7 @@ for config_name in ['r1', 'r2', 'r3']:
       # Metric function from nlp/unicorn/rainbow/ext5/classification_tasks.py
       metric_fns=[t5_metrics.accuracy],
   )
-
+'''
 
 # ============================== sentiment140 ==================================
 @seqio.map_over_dataset
@@ -1075,7 +1079,7 @@ def _process_story_cloze(example):
       'answer': tf.boolean_mask(options, one_hot)[0],
   }
 
-
+'''
 # The other config, `2018` does not have correct labels in tfds.
 TASK_CONFIGS['story_cloze'] = TaskConfig(
     source=seqio.TfdsDataSource(
@@ -1092,7 +1096,7 @@ TASK_CONFIGS['story_cloze'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.accuracy],
 )
-
+'''
 
 # ============================== imdb_reviews ==================================
 @seqio.map_over_dataset
@@ -1149,7 +1153,7 @@ def _process_paws_wiki(example):
       'glm_answer': tf.boolean_mask(glm_options, one_hot)[0],
   }
 
-
+'''
 TASK_CONFIGS['paws_wiki'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='paws_wiki:1.1.0', splits=SPLITS_DICT),
@@ -1161,7 +1165,7 @@ TASK_CONFIGS['paws_wiki'] = TaskConfig(
     # Paper uses accuracy
     metric_fns=[t5_metrics.accuracy],
 )
-
+'''
 
 # ====================== definite_pronoun_resolution ===========================
 @seqio.map_over_dataset
@@ -1177,7 +1181,7 @@ def _process_definite_pronoun_resolution(example):
       'answer': tf.boolean_mask(options, one_hot)[0],
   }
 
-
+'''
 TASK_CONFIGS['definite_pronoun_resolution'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='definite_pronoun_resolution:1.1.0',
@@ -1194,7 +1198,7 @@ TASK_CONFIGS['definite_pronoun_resolution'] = TaskConfig(
     # Metric function from t5/data/tasks.py
     metric_fns=[t5_metrics.accuracy],
 )
-
+'''
 
 # =============================== glue_mrpc ====================================
 @seqio.map_over_dataset
@@ -1213,7 +1217,7 @@ def _process_glue_mrpc(example):
       'glm_answer': tf.boolean_mask(glm_options, one_hot)[0],
   }
 
-
+'''
 TASK_CONFIGS['glue_mrpc'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='glue/mrpc:2.0.0',
@@ -1230,7 +1234,7 @@ TASK_CONFIGS['glue_mrpc'] = TaskConfig(
         t5_post.string_label_to_class_id, label_classes=['no', 'yes']),
     metric_fns=glue_utils.get_glue_metric('mrpc'),
 )
-
+'''
 
 # =============================== glue_qqp =====================================
 @seqio.map_over_dataset
@@ -1250,7 +1254,7 @@ def _process_glue_qqp(example):
       'glm_answer': tf.boolean_mask(glm_options, one_hot)[0],
   }
 
-
+'''
 TASK_CONFIGS['glue_qqp'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='glue/qqp:2.0.0',
@@ -1267,7 +1271,7 @@ TASK_CONFIGS['glue_qqp'] = TaskConfig(
         t5_post.string_label_to_class_id, label_classes=['no', 'yes']),
     metric_fns=glue_utils.get_glue_metric('qqp'),
 )
-
+'''
 
 # =================================== copa =====================================
 @seqio.map_over_dataset
@@ -1296,6 +1300,7 @@ copa_source_args = {
         'test': 'validation'
     }
 }
+'''
 TASK_CONFIGS['copa'] = TaskConfig(
     # Test set labels not available for copa.
     source=seqio.TfdsDataSource(**copa_source_args),
@@ -1307,7 +1312,7 @@ TASK_CONFIGS['copa'] = TaskConfig(
     metric_fns=glue_utils.get_super_glue_metric('copa'),
     source_args=copa_source_args,
 )
-
+'''
 
 # ============================== winogrande ====================================
 @seqio.map_over_dataset
@@ -1330,7 +1335,7 @@ def _process_winogrande(example):
       'answer': tf.boolean_mask(options, one_hot)[0],
   }
 
-
+'''
 TASK_CONFIGS['winogrande'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='winogrande:1.1.0',
@@ -1346,7 +1351,7 @@ TASK_CONFIGS['winogrande'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.accuracy],
 )
-
+'''
 
 # ========================== yelp_polarity_reviews =============================
 @seqio.map_over_dataset
@@ -1490,7 +1495,7 @@ def _process_wmt14_translate_enfr(example):
       'sent2': example['fr'],
   }
 
-
+'''
 TASK_CONFIGS['wmt14_enfr'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='wmt14_translate/fr-en:1.0.0', splits=WMT16_SPLITS_DICT),
@@ -1500,7 +1505,7 @@ TASK_CONFIGS['wmt14_enfr'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.bleu],
 )
-
+'''
 
 # ============================== wmt16 =========================================
 @seqio.map_over_dataset
@@ -1571,7 +1576,7 @@ wmt_language_to_process = {
     'ro-en': _process_wmt16_translate_roen,
     'ru-en': _process_wmt16_translate_ruen,
 }
-
+'''
 for k in wmt_language_to_process:
 
   l2, l1 = k.split('-')[0], k.split('-')[1]
@@ -1586,7 +1591,7 @@ for k in wmt_language_to_process:
       postprocess_fn=None,
       metric_fns=[t5_metrics.bleu],
   )
-
+'''
 
 # ============================== common_gen ====================================
 @seqio.map_over_dataset
@@ -1606,7 +1611,7 @@ def _process_common_gen(example):
           references,
   }
 
-
+'''
 TASK_CONFIGS['common_gen'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='gem/common_gen:1.1.0',
@@ -1621,7 +1626,7 @@ TASK_CONFIGS['common_gen'] = TaskConfig(
     postprocess_fn=t5_post.qa,
     metric_fns=[rouge_fn],
 )
-
+'''
 
 # ================================== dart ======================================
 @seqio.map_over_dataset
@@ -1643,7 +1648,7 @@ def _process_dart(example):
       'tripleset_newline': tripleset_newline
   }
 
-
+'''
 TASK_CONFIGS['dart'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='gem/dart:1.1.0',
@@ -1658,7 +1663,7 @@ TASK_CONFIGS['dart'] = TaskConfig(
     postprocess_fn=t5_post.qa,
     metric_fns=[rouge_fn],
 )
-
+'''
 
 # ============================== e2e_nlg ====================================
 @seqio.map_over_dataset
@@ -1676,7 +1681,7 @@ def _process_e2e_nlg(example):
       'answers': references,
   }
 
-
+'''
 TASK_CONFIGS['e2e_nlg'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='gem/e2e_nlg:1.1.0',
@@ -1691,7 +1696,7 @@ TASK_CONFIGS['e2e_nlg'] = TaskConfig(
     postprocess_fn=t5_post.qa,
     metric_fns=[rouge_fn],
 )
-
+'''
 
 # ============================== web_nlg_en ====================================
 @seqio.map_over_dataset
@@ -1709,7 +1714,7 @@ def _process_web_nlg_en(example):
       'answers': references,
   }
 
-
+'''
 TASK_CONFIGS['web_nlg_en'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='gem/web_nlg_en:1.1.0',
@@ -1724,7 +1729,7 @@ TASK_CONFIGS['web_nlg_en'] = TaskConfig(
     postprocess_fn=t5_post.qa,
     metric_fns=[rouge_fn],
 )
-
+'''
 
 # ========================== wiki_lingua_english_en ============================
 @seqio.map_over_dataset
@@ -1734,7 +1739,7 @@ def _process_wiki_lingua_english_en(example):
       'target': example['target'],
   }
 
-
+'''
 TASK_CONFIGS['wiki_lingua_english_en'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='gem/wiki_lingua_english_en:1.1.0', splits=SPLITS_DICT),
@@ -1744,7 +1749,7 @@ TASK_CONFIGS['wiki_lingua_english_en'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.rouge],
 )
-
+'''
 
 # ================================= true_case ==================================
 @seqio.map_over_dataset
@@ -1766,6 +1771,7 @@ def _filter_true_case(dataset):
 tc_prep_fn = functools.partial(prep.add_source_info,
     task_name="true_case", task_source="Flan2021")
 true_case_val_end = NUM_TRAIN_EXAMPLES + NUM_VAL_EXAMPLES
+'''
 TASK_CONFIGS['true_case'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='para_crawl/enda:1.2.0',
@@ -1782,7 +1788,7 @@ TASK_CONFIGS['true_case'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.edit_distance],
 )
-
+'''
 
 # ================================= fix_punct ==================================
 @seqio.map_over_dataset
@@ -1805,6 +1811,7 @@ fp_prep_fn = functools.partial(prep.add_source_info,
     task_name="fix_punct", task_source="Flan2021")
 fix_punct_train_end = true_case_val_end + NUM_TRAIN_EXAMPLES
 fix_punct_val_end = fix_punct_train_end + NUM_VAL_EXAMPLES
+'''
 TASK_CONFIGS['fix_punct'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='para_crawl/enda:1.2.0',
@@ -1821,7 +1828,7 @@ TASK_CONFIGS['fix_punct'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.edit_distance],
 )
-
+'''
 
 # ============================== word_segment ==================================
 @seqio.map_over_dataset
@@ -1836,6 +1843,7 @@ ws_prep_fn = functools.partial(prep.add_source_info,
     task_name="word_segment", task_source="Flan2021")
 w_seg_train_end = fix_punct_val_end + NUM_TRAIN_EXAMPLES
 w_seg_val_end = w_seg_train_end + NUM_VAL_EXAMPLES
+'''
 TASK_CONFIGS['word_segment'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='para_crawl/enda:1.2.0',
@@ -1851,7 +1859,7 @@ TASK_CONFIGS['word_segment'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.edit_distance],
 )
-
+'''
 
 # =============================== CB ========================================
 @seqio.map_over_dataset
@@ -1878,6 +1886,7 @@ cb_source_args = {
         'test': 'validation',
     }
 }
+'''
 TASK_CONFIGS['cb'] = TaskConfig(
     source=seqio.TfdsDataSource(**cb_source_args),
     preprocessors=[
@@ -1887,7 +1896,7 @@ TASK_CONFIGS['cb'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=glue_utils.get_super_glue_metric('cb'),
     source_args=cb_source_args)
-
+'''
 
 # ================================ CoLA ========================================
 @seqio.map_over_dataset
@@ -1900,7 +1909,7 @@ def _process_cola(example):
       'answer': tf.boolean_mask(options, one_hot)[0],
   }
 
-
+'''
 TASK_CONFIGS['cola'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='glue/cola:2.0.0',
@@ -1916,7 +1925,7 @@ TASK_CONFIGS['cola'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.accuracy],  # TODO(jasonwei) matthews_corrcoef
 )
-
+'''
 
 # ================================ SST2 ========================================
 @seqio.map_over_dataset
@@ -1966,7 +1975,7 @@ def _process_mnli(example):
       'glm_answer': tf.boolean_mask(glm_options, one_hot)[0],
   }
 
-
+'''
 TASK_CONFIGS['mnli_matched'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='glue/mnli:2.0.0',
@@ -1998,7 +2007,7 @@ TASK_CONFIGS['mnli_mismatched'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=glue_utils.get_glue_metric('mnli'),
 )
-
+'''
 
 # ================================ QNLI ========================================
 @seqio.map_over_dataset
@@ -2019,7 +2028,7 @@ def _process_qnli(example):
       'glm_answer': tf.boolean_mask(glm_options, one_hot)[0],
   }
 
-
+'''
 TASK_CONFIGS['qnli'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='glue/qnli:2.0.0',
@@ -2035,7 +2044,7 @@ TASK_CONFIGS['qnli'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=glue_utils.get_glue_metric('qnli'),
 )
-
+'''
 
 # ================================ WNLI ========================================
 @seqio.map_over_dataset
@@ -2097,7 +2106,7 @@ def _filter_snli(dataset):
 
   return dataset.filter(my_fn)
 
-
+'''
 TASK_CONFIGS['snli'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='snli:1.1.0',
@@ -2114,7 +2123,7 @@ TASK_CONFIGS['snli'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.accuracy],
 )
-
+'''
 
 # ================================ TREC ========================================
 @seqio.map_over_dataset
@@ -2128,7 +2137,7 @@ def _process_trec(example):
       'answer': tf.boolean_mask(options, one_hot)[0],
   }
 
-
+'''
 TASK_CONFIGS['trec'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='trec:1.0.0',
@@ -2144,7 +2153,7 @@ TASK_CONFIGS['trec'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.accuracy],
 )
-
+'''
 
 # ================================ STSB ========================================
 @seqio.map_over_dataset
@@ -2159,7 +2168,7 @@ def _process_stsb(example):
       'answer_int': example['label'],
   }
 
-
+'''
 TASK_CONFIGS['stsb'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='glue/stsb:2.0.0',
@@ -2175,7 +2184,7 @@ TASK_CONFIGS['stsb'] = TaskConfig(
     postprocess_fn=t5_post.string_to_float,
     metric_fns=glue_utils.get_glue_metric('stsb'),
 )
-
+'''
 
 # ================================= PIQA =======================================
 @seqio.map_over_dataset
@@ -2188,7 +2197,7 @@ def _process_piqa(example):
       'answer': tf.boolean_mask(options, one_hot)[0],
   }
 
-
+'''
 TASK_CONFIGS['piqa'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='piqa:1.0.0',
@@ -2204,7 +2213,7 @@ TASK_CONFIGS['piqa'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.accuracy],
 )
-
+'''
 
 # ============================= OpenbookQA =====================================
 @seqio.map_over_dataset
@@ -2275,7 +2284,7 @@ def _filter_hellaswag(dataset):
 
   return dataset.filter(my_fn)
 
-
+'''
 TASK_CONFIGS['hellaswag'] = TaskConfig(
     source=seqio.TfdsDataSource(
         tfds_name='hellaswag:1.1.0',
@@ -2292,3 +2301,4 @@ TASK_CONFIGS['hellaswag'] = TaskConfig(
     postprocess_fn=None,
     metric_fns=[t5_metrics.accuracy],
 )
+'''

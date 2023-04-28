@@ -36,13 +36,8 @@ DEFAULT_OUTPUT_FEATURES = constants.DEFAULT_OUTPUT_FEATURES
 NATINST_META_DATA = constants_niv2.NATINST_META_DATA
 TaskConfig = task_configs_v1.TaskConfig
 
-list_datasets = ["bool_q", "natural_questions", "record", "trivia_qa", "arc_challenge", "arc_easy", "cnn_dailymail", "gigaword", "xsum", "squad_v1", "squad_v2", "drop", "multirc", "ag_news_subset", "imdb_reviews", "sentiment140", "yelp_polarity_review", "cosmos_qa", "sst2", "openbookqa"]
-updated_task_configs = {}
-for dataset, config in task_configs_v1.TASK_CONFIGS.items():
-  if dataset in list_datasets:
-    updated_task_configs[dataset] = config 
 FLAN_V0_TASK_CONFIGS = utils.reset_split_maxes_on_flan_v0_configs(
-updated_task_configs)
+task_configs_v1.TASK_CONFIGS)
 COT_TASK_CONFIGS = {}
 DIALOG_TASK_CONFIGS = {}
 T0_TASK_CONFIGS = {}

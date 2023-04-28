@@ -25,7 +25,7 @@ def prepare_task(split, shots, opt, task):
     
     for dataset_name in list_datasets:
 
-        for pattern_idx in tqdm(range(10)):
+        for pattern_idx in tqdm.tqdm(range(10)):
 
             dataset = seqio.get_mixture_or_task(f"{dataset_name}_template_{pattern_idx}_zero_shot").get_dataset(
                 split=split, num_epochs=1, sequence_length={"inputs": 4096, "targets": 4096}

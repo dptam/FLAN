@@ -28,11 +28,10 @@ def prepare_task(split, shots, opt, task):
     dataset_name = "bool_q"
     for pattern_idx in range(10):
 
-        dataset = seqio.get_mixture_or_task(f"{dataset_name}_template_{pattern_idx}").get_dataset(
+        dataset = seqio.get_mixture_or_task(f"{dataset_name}_template_{pattern_idx}_zero_shot").get_dataset(
             split=split, num_epochs=1, sequence_length={"inputs": 4096, "targets": 4096}
         )
 
-        print("starting", task, shots, opt, split)
         dataset_dir = f"data/{dataset_name}"
         if not os.path.exists(dataset_dir):
             os.makedirs(dataset_dir)

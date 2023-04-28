@@ -68,17 +68,20 @@ T_NAME_TO_NUM_CASES = {
         'five_shot': 5220,
     },
     'natural_questions': {
-        'zero_shot': 87720,
+        'zero_shot': 500000,
+        # 'zero_shot': 87720,
         'x_shot': 87720,
         'five_shot': 87720,
     },
     'record': {
-        'zero_shot': 100520,
+        'zero_shot': 500000,
+        # 'zero_shot': 100520,
         'x_shot': 100520,
         'five_shot': 100448,
     },
     'trivia_qa': {
-        'zero_shot': 87420,
+        'zero_shot': 500000,
+        # 'zero_shot': 87420,
         'x_shot': 87420,
         'five_shot': 87420,
     },

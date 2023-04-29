@@ -28,13 +28,13 @@ def prepare_task(split, shots, opt, task):
         for pattern_idx in tqdm.tqdm(range(10)):
 
             dataset = seqio.get_mixture_or_task(f"{dataset_name}_template_{pattern_idx}_zero_shot").get_dataset(
-                split=split, num_epochs=1, sequence_length={"inputs": 4096, "targets": 4096}
+                split=split, num_epochs=1, shuffle_buffer_size=0, sequence_length={"inputs": 4096, "targets": 4096}
             )
 
             dataset_dir = f"data/{dataset_name}"
             if not os.path.exists(dataset_dir):
                 os.makedirs(dataset_dir)
-            with open(f"{dataset_dir}/{pattern_idx}.jsonl", "w") as f:
+            with open(f"{dataset_dir}/template_{pattern_idx}.jsonl", "w") as f:
                 for ex in dataset.as_numpy_iterator():
                     input_ids = list(map(lambda x: int(x), ex["inputs"]))
                     target_ids = list(map(lambda x: int(x), ex["targets"]))

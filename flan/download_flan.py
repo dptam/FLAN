@@ -21,14 +21,14 @@ vocab = t5.data.get_default_vocabulary()
 
 def prepare_task(split, shots, opt, task):
  
-    list_datasets = ["yelp_polarity_reviews", "cosmos_qa", "sst2", "openbookqa"]
+    list_datasets = ["bool_q", "natural_questions", "record", "trivia_qa", "arc_challenge", "arc_easy", "cnn_dailymail", "gigaword", "xsum", "squad_v1", "squad_v2", "drop", "multirc", "ag_news_subset", "imdb_reviews", "sentiment140", "yelp_polarity_review", "cosmos_qa", "sst2", "openbookqa"]
     
     for dataset_name in list_datasets:
 
         for pattern_idx in tqdm.tqdm(range(10)):
 
             dataset = seqio.get_mixture_or_task(f"{dataset_name}_template_{pattern_idx}_zero_shot").get_dataset(
-                split=split, num_epochs=1, shuffle_buffer_size=0, sequence_length={"inputs": 4096, "targets": 4096}
+                split=split, num_epochs=1, shuffle=False, sequence_length={"inputs": 4096, "targets": 4096}
             )
 
             dataset_dir = f"data/{dataset_name}"

@@ -21,7 +21,7 @@ vocab = t5.data.get_default_vocabulary()
 
 def prepare_task():
  
-    list_datasets = ["openbookqa"]
+    list_datasets = ["natural_questions"]
     
     for dataset_name in list_datasets:
         for split in ["train", "validation", "test"]:

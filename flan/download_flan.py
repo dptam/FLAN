@@ -21,7 +21,25 @@ vocab = t5.data.get_default_vocabulary()
 
 def prepare_task():
  
-    list_datasets = ["natural_questions"]
+    list_datasets = ["trivia_qa",
+                      "squad_v2",                        "natural_questions",                  
+                      "web_nlg_en",
+                      "common_gen",
+                      "e2e_nlg",
+                      "dart",
+                      "aeslc",
+                      "cnn_dailymail",
+                      "gigaword",
+                      "multi_news",
+                      "newsroom",
+                      "samsum",
+                      "xsum",
+                      "ag_news_subset",
+                      "opinion_abstracts_rotten_tomatoes",
+                      "opinion_abstracts_idebate",
+                      "wiki_lingua_english_en",
+                      "quac",
+                      "coqa"]
     
     for dataset_name in list_datasets:
         for split in ["train", "validation", "test"]:

@@ -23,6 +23,7 @@ vocab = t5.data.get_default_vocabulary()
 
 
 def prepare_task():
+<<<<<<< HEAD
     list_datasets = [
         "web_nlg_en",
         "quac",
